@@ -1,7 +1,7 @@
 
 """
-This sample script illustrates how to use the utils.deploy_openai_model.deployment_model_with_custom_name,  
-utils.openai_wrapper.deployment_retrieve and utils.openai_wrapper.get_chatcompletion functions
+This sample script illustrates how to use the utils.openai_deploy.deployment_model_with_custom_name,  
+utils.openai_retry.deployment_retrieve and utils.openai_retry.get_chatcompletion functions
 """
 from azure.identity import AzureCliCredential
 from azure.core.exceptions import ResourceExistsError
