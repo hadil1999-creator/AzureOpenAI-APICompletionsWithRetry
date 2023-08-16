@@ -19,8 +19,9 @@ if __name__ == '__main__':
 
     # Get access token
     credential = AzureCliCredential()
-    access_token = credential.get_token(openai.azure.com)
-#    access_token = credential.get_token(https://cognitiveservices.azure.com/default)
+#    access_token = credential.get_token(openai.azure.com)
+    access_token = credential.get_token(https://cognitiveservices.azure.com/default)
+#    access_token = credential.get_token()
 
     # Setup OpenAI SDK
     openai.api_type = "azure_ad"
@@ -30,9 +31,9 @@ if __name__ == '__main__':
     
     # Deploy model to use
     subscription_id = SUBSCRIPTION_ID
-    model_name = "text-davinci-003"
-    deployment_name = "test_model"
-    model_version = "1"
+    model_name = "gpt-35-turbo"
+    deployment_name = "gpt-35-turbo"
+    model_version = "0631"
     openai_instance_name = OPENAI_INSTANCE_NAME
     cog_rg = COGNITIVE_SERVICES_RESOURCE_GROUP
     
