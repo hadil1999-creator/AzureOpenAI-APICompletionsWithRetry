@@ -12,14 +12,14 @@ from utils.openai_retry import get_completion, deployment_retrieve
 
 if __name__ == '__main__':
     # Set constants
-    API_BASE_URL = ""
-    SUBSCRIPTION_ID = ""
-    OPENAI_INSTANCE_NAME = ""
-    COGNITIVE_SERVICES_RESOURCE_GROUP = ""
+    API_BASE_URL = "https://arkr-msft-cogsvc.openai.azure.com/"
+    SUBSCRIPTION_ID = "3e0da524-e2c9-485a-b036-f6584397a0c0"
+    OPENAI_INSTANCE_NAME = "arkr-msft-cogsv"
+    COGNITIVE_SERVICES_RESOURCE_GROUP = "arkr-msft"
 
     # Get access token
     credential = AzureCliCredential()
-    access_token = credential.get_token(https://arkr-msft-cogsvc.openai.azure.com/)
+    access_token = credential.get_token(openai.azure.com)
 #    access_token = credential.get_token(https://cognitiveservices.azure.com/default)
 
     # Setup OpenAI SDK

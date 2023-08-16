@@ -5,7 +5,7 @@
 from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
 from azure.identity import AzureCliCredential
 
-def deployment_model_with_custom_name(credential: AzureCliCredential, subscription_id: str, 
+def deployment_model_with_custom_name(credential: AzureCliCredential, subscription_id: str,
                                       cog_rg: str, openai_instance_name: str, deployment_name: str, model: str, model_version: str)->str:
     """
     This function deploys a specified base Azure OpenAI model to the Azure OpenAI instance with a custom deployment name.

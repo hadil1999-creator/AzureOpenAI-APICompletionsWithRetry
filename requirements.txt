@@ -5,3 +5,4 @@ black==23.7.0
 ipython==8.14.0
 azure-identity==1.14.0
 azure-cli==2.51.0
+openai==0.27.8
