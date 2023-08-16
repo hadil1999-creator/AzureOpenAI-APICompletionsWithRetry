@@ -19,7 +19,8 @@ if __name__ == '__main__':
 
     # Get access token
     credential = AzureCliCredential()
-    access_token = credential.get_token(https://cognitiveservices.azure.com/.default)
+    access_token = credential.get_token(https://arkr-msft-cogsvc.openai.azure.com/)
+#    access_token = credential.get_token(https://cognitiveservices.azure.com/default)
 
     # Setup OpenAI SDK
     openai.api_type = "azure_ad"
