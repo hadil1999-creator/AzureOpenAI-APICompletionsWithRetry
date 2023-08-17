@@ -30,6 +30,7 @@ def deployment_model_with_custom_name(credential: AzureCliCredential, subscripti
         resource_group_name=cog_rg,
         account_name=openai_instance_name,
         deployment_name=deployment_name,
+        content_type = 'application/json',
         deployment={
             "properties": {
             "model": {

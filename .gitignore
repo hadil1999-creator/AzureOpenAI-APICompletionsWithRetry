@@ -1,5 +1,6 @@
 #Local files only
 test.py
+local.config
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

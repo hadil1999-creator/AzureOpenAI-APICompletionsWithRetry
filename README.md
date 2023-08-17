@@ -2,7 +2,7 @@
 
 This repo provides step by step instructions on how to setup environment and use python scripts to deploy Azure OpenAI models as well as make API calls to the models for inferencing. 
 
-## Pre-requisite 
+## Prerequisite 
 
 1. A up and running Azure OpenAI instance is required. The steps to achieve this via code are available on my other repo here: https://github.com/arkr-msft/Azure-IaC
 
