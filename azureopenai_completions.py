@@ -17,6 +17,7 @@ from utils.openai_retry import get_completion
 # Main function 
 if __name__ == '__main__':
     # Set constants
+
     API_BASE_URL = ""
     SUBSCRIPTION_ID = ""
     OPENAI_INSTANCE_NAME = ""
@@ -24,7 +25,7 @@ if __name__ == '__main__':
  
     # Get access token
     credential = AzureCliCredential()
-    access_token = credential.get_token(https://cognitiveservices.azure.com/.default)
+    access_token = credential.get_token("https://cognitiveservices.azure.com/.default")
  
     # Setup OpenAI SDK
     openai.api_type = "azure_ad"
