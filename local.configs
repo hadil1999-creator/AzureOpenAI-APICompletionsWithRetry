@@ -1,4 +1,4 @@
-    # Set constants
+    # Set constants in azureopenai_deploy.py
     API_BASE_URL = "https://arkr-msft-cogsvc.openai.azure.com/"
     SUBSCRIPTION_ID = "3e0da524-e2c9-485a-b036-f6584397a0c0"
     OPENAI_INSTANCE_NAME = "arkr-msft-cogsvc"
