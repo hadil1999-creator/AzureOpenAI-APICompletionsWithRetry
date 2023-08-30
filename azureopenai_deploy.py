@@ -12,10 +12,10 @@ from utils.openai_retry import get_completion, deployment_retrieve
 
 if __name__ == '__main__':
     # Set constants
-    API_BASE_URL = ""
-    SUBSCRIPTION_ID = ""
-    OPENAI_INSTANCE_NAME = ""
-    COGNITIVE_SERVICES_RESOURCE_GROUP = ""
+    API_BASE_URL = "https://arkr-msft-cogsvc-eus2.openai.azure.com/"
+    SUBSCRIPTION_ID = "3e0da524-e2c9-485a-b036-f6584397a0c0"
+    OPENAI_INSTANCE_NAME = "arkr-msft-cogsvc-eus2"
+    COGNITIVE_SERVICES_RESOURCE_GROUP = "arkr_msft_eastus2"
 
     # Get access token
     credential = AzureCliCredential()
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     subscription_id = SUBSCRIPTION_ID
     model_name = "gpt-35-turbo"
     deployment_name = "gpt-35-turbo"
-    model_version = "0631"
+    model_version = "0613"
     openai_instance_name = OPENAI_INSTANCE_NAME
     cog_rg = COGNITIVE_SERVICES_RESOURCE_GROUP
     

@@ -2,7 +2,8 @@
 This sample script illustrates how to use the utils.deploy_openai_model.deployment_model_with_custom_name and 
 utils.openai_wrapper.get_chatcompletion functions
 """
-from azure.identity import AzureCliCredential
+#from azure.identity import AzureCliCredential
+from azure.identity import DefaultAzureCredential
 from azure.core.exceptions import ResourceExistsError
 import re
 import openai
@@ -11,14 +12,16 @@ from utils.openai_retry import get_chatcompletion
 
 if __name__ == '__main__':
     # Set constants
-    API_BASE_URL = ""
-    SUBSCRIPTION_ID = ""
-    OPENAI_INSTANCE_NAME = ""
-    COGNITIVE_SERVICES_RESOURCE_GROUP = ""
+    API_BASE_URL = "https://arkr-msft-cogsvc-eus2.openai.azure.com/"
+    SUBSCRIPTION_ID = "3e0da524-e2c9-485a-b036-f6584397a0c0"
+    OPENAI_INSTANCE_NAME = "arkr-msft-cogsvc-eus2"
+    COGNITIVE_SERVICES_RESOURCE_GROUP = "arkr_msft_eastus2"
+
 
     # Get access token
-    credential = AzureCliCredential()
-    access_token = credential.get_token(https://cognitiveservices.azure.com/.default)
+#    credential = AzureCliCredential()
+    credential = DefaultAzureCredential(exclude_shared_token_cache_credential = True)
+    access_token = credential.get_token("https://cognitiveservices.azure.com/.default")
 
     # Setup OpenAI SDK
     openai.api_type = "azure_ad"
@@ -29,8 +32,8 @@ if __name__ == '__main__':
     # Deploy model to use
     subscription_id = SUBSCRIPTION_ID
     model_name = "gpt-35-turbo"
-    deployment_name = "chatgpt_35_model"
-    model_version = "0301"
+    deployment_name = "gpt-35-turbo"
+    model_version = "0613"
     openai_instance_name = OPENAI_INSTANCE_NAME
     cog_rg = COGNITIVE_SERVICES_RESOURCE_GROUP
     

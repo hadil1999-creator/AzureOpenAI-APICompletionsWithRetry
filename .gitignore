@@ -1,6 +1,7 @@
 #Local files only
 test.py
 local.config
+*.creds
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
