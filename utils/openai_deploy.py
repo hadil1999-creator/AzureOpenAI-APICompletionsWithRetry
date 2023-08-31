@@ -42,7 +42,8 @@ def deployment_model_with_custom_name(credential: AzureCliCredential, subscripti
         }
     )
     result = deployment.result()
-
+    print("Deployment Sucessful:")
+    print(result)
     deployment_id = result.name
 
     return deployment_id

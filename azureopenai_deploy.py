@@ -3,12 +3,13 @@
 This sample script illustrates how to use the utils.openai_deploy.deployment_model_with_custom_name,  
 utils.openai_retry.deployment_retrieve and utils.openai_retry.get_chatcompletion functions
 """ 
-from azure.identity import AzureCliCredential
+#from azure.identity import AzureCliCredential
+from azure.identity import DefaultAzureCredential
 from azure.core.exceptions import ResourceExistsError
 import re
 import openai
 from utils.openai_deploy import deployment_model_with_custom_name
-from utils.openai_retry import get_completion, deployment_retrieve
+from utils.openai_retry import get_completion, deployment_retrieve, get_chatcompletion
 
 if __name__ == '__main__':
     # Set constants
@@ -17,20 +18,24 @@ if __name__ == '__main__':
     OPENAI_INSTANCE_NAME = ""
     COGNITIVE_SERVICES_RESOURCE_GROUP = ""
 
+    print("Getting token")
+
     # Get access token
-    credential = AzureCliCredential()
-    access_token = credential.get_token("https://cognitiveservices.azure.com/")
+    credential = DefaultAzureCredential(exclude_shared_token_cache_credential = True)
+    access_token = credential.get_token("https://cognitiveservices.azure.com/.default")
 
     # Setup OpenAI SDK
     openai.api_type = "azure_ad"
     openai.api_base = API_BASE_URL
-    openai.api_version = "2022-12-01"
+    openai.api_version = "2023-03-15-preview"
     openai.api_key = access_token.token
     
+    print("Azure Openai token received")
+
     # Deploy model to use
     subscription_id = SUBSCRIPTION_ID
     model_name = "gpt-35-turbo"
-    deployment_name = "gpt-35-turbo"
+    deployment_name = "gpt35turbo2"
     model_version = "0613"
     openai_instance_name = OPENAI_INSTANCE_NAME
     cog_rg = COGNITIVE_SERVICES_RESOURCE_GROUP
@@ -47,6 +52,8 @@ if __name__ == '__main__':
                             )
 
     except Exception as exception:
+        print("Exception encountered:")
+        print(exception)
         if isinstance(exception, ResourceExistsError):
             if "Only 1 deployment is allowed for the same model" in exception.exc_msg:
                # Extract existing deployment id
@@ -54,31 +61,33 @@ if __name__ == '__main__':
                print(f"Found existing deployment, {deployment_id}, with same model, {model_name}.")
                print("Using existing model deployment.")
             else:
-                print(f"Error deploying model {model_name}")
+                print(f"Model already exists {model_name}")
                 raise
         else:
-            print(f"Error deploying model {model_name}")
+            print(f"Error deploying new model {model_name}")
             raise
 
     # Retrieve model to use
-    print(f"Retrieving base model, {deployment_id}, to use")
-    model_id, model_name, model_status = deployment_retrieve(openai_instance=openai, deployment_id=deployment_id)
+    print(f"Retrieving base model,deployment ID {deployment_id},deployment name {deployment_name} to use")
 
-    if model_status == "succeeded":
+    model = openai.Deployment.retrieve(deployment_name)
+ 
+
+    if model.status == "succeeded":
         # The model is ready for use
         # Get Azure OpenAI Completion
         print("Testing retrieved model with Completion request")
-        text = "Write a product description in bullet points for a renters insurance product that offers customizable coverage,\
-        rewards and incentives, flexible payment options and a peer-to-peer referral program. The tone should be persuasive and professional."
+        text = [{"role":"user","content":"Write a product description in bullet points for a renters insurance product that offers customizable coverage,\
+        rewards and incentives, flexible payment options and a peer-to-peer referral program. The tone should be persuasive and professional."}]
         
-        print(f"Completion prompt: {text}")
-        completion_result = get_completion(openai_instance=openai,
-                                       deployment_id=model_id,
-                                       prompt_text=text)
+        print(f"\n \n Completion prompt: {text}")
+        completion_result = get_chatcompletion(openai_instance=openai,
+                                       deployment_id=model.id,
+                                       message_text=text)
 
-        print(f"Completion response: {completion_result}")
+        print(f"\n \n Completion response: {completion_result}")
 
     else:
-        print(f"Deployed model, deployment id = {model_id} and model name = {model_name} is not in usable state. It is in {model_status} state. To use the model, please wait until model status is 'succeeded'.")
+        print(f"Deployed model, deployment id = {model.id} and model name = {model_name} is not in usable state. It is in {model.status} state. To use the model, please wait until model status is 'succeeded'.")
 
 
