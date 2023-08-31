@@ -12,10 +12,10 @@ from utils.openai_retry import get_chatcompletion
 
 if __name__ == '__main__':
     # Set constants
-    API_BASE_URL = "https://arkr-msft-cogsvc-eus2.openai.azure.com/"
-    SUBSCRIPTION_ID = "3e0da524-e2c9-485a-b036-f6584397a0c0"
-    OPENAI_INSTANCE_NAME = "arkr-msft-cogsvc-eus2"
-    COGNITIVE_SERVICES_RESOURCE_GROUP = "arkr_msft_eastus2"
+    API_BASE_URL = ""
+    SUBSCRIPTION_ID = ""
+    OPENAI_INSTANCE_NAME = ""
+    COGNITIVE_SERVICES_RESOURCE_GROUP = ""
 
 
     # Get access token
