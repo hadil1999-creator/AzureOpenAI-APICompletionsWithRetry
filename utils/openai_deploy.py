@@ -37,7 +37,13 @@ def deployment_model_with_custom_name(credential: AzureCliCredential, subscripti
                 "name": model,
                 "version": model_version
             },
-            "sku": "standard"
+            "scaleSettings": {
+                "scaleType": "Standard",
+            }
+            },
+            "sku": {
+                "name": "Standard",
+                "capacity": 1
             }
         }
     )
