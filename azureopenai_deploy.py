@@ -9,7 +9,7 @@ from azure.core.exceptions import ResourceExistsError
 import re
 import openai
 from utils.openai_deploy import deployment_model_with_custom_name
-from utils.openai_retry import get_completion, deployment_retrieve, get_chatcompletion
+from utils.openai_retry import get_chatcompletion
 
 if __name__ == '__main__':
     # Set constants
@@ -56,10 +56,10 @@ if __name__ == '__main__':
         print(exception)
         if isinstance(exception, ResourceExistsError):
             if "Only 1 deployment is allowed for the same model" in exception.exc_msg:
-               # Extract existing deployment id
-               deployment_id = re.findall(r"'(.*?)'", exception.exc_msg, re.DOTALL)[1]
-               print(f"Found existing deployment, {deployment_id}, with same model, {model_name}.")
-               print("Using existing model deployment.")
+                # Extract existing deployment id
+                deployment_id = re.findall(r"'(.*?)'", exception.exc_msg, re.DOTALL)[1]
+                print(f"Found existing deployment, {deployment_id}, with same model, {model_name}.")
+                print("Using existing model deployment.")
             else:
                 print(f"Model already exists {model_name}")
                 raise
