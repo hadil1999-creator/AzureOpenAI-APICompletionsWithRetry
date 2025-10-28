@@ -50,10 +50,10 @@ if __name__ == '__main__':
     except Exception as exception:
         if isinstance(exception, ResourceExistsError):
             if "Only 1 deployment is allowed for the same model" in exception.exc_msg:
-               # Extract existing deployment id
-               deployment_id = re.findall(r"'(.*?)'", exception.exc_msg, re.DOTALL)[1]
-               print(f"Found existing deployment, {deployment_id}, with same model, {model_name}.")
-               print("Using existing model deployment.")
+                # Extract existing deployment id
+                deployment_id = re.findall(r"'(.*?)'", exception.exc_msg, re.DOTALL)[1]
+                print(f"Found existing deployment, {deployment_id}, with same model, {model_name}.")
+                print("Using existing model deployment.")
             else:
                 print(f"Error deploying model {model_name}")
                 raise
